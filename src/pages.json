@@ -1,16 +1,39 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#23243b",
+    "list": [
+      {
+        "pagePath": "pages/dashBoard/index",
+        "text": "Demo"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "组件"
+      }
+    ]
+  },
+  "pages": [
+    {
+      "path": "pages/dashBoard/index",
+      "style": {
+        "navigationBarTitleText": "xx 航空季报",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#23243b"
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "组件库"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Dash board",
+    "navigationBarBackgroundColor": "#F8F8F8"
+  }
 }
