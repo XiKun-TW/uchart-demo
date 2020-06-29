@@ -1,20 +1,4 @@
 {
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
-    "borderStyle": "black",
-    "backgroundColor": "#23243b",
-    "list": [
-      {
-        "pagePath": "pages/dashBoard/index",
-        "text": "Demo"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "组件"
-      }
-    ]
-  },
   "pages": [
     {
       "path": "pages/dashBoard/index",
