@@ -3,17 +3,17 @@
     <view class="over-all">
       <view class="income">
         <view class="price">￥155（百万）</view>
-        <view class="catgory">总收入</view>
+        <view class="catgory">6月总收入</view>
       </view>
       <view class="stat">
         <view class="price">700（千）</view>
-        <view class="catgory">乘次</view>
+        <view class="catgory">6月总乘次</view>
       </view>
     </view>
     <view class="chart-container">
       <line-chart
         id="monthlyIncome"
-        header="年度收入趋势"
+        header="2020年收入趋势"
         v-bind:initData="monthlyIncomeData"
         v-bind:width="700"
         v-bind:height="500"
@@ -24,7 +24,7 @@
     <view class="chart-container">
       <line-chart
         id="yearlyIncome"
-        header="年同比对比"
+        header="18-20年收入同比对比"
         v-bind:initData="yearlyIncomeData"
         v-bind:width="700"
         v-bind:height="500"
@@ -35,7 +35,7 @@
     <view class="chart-container">
       <column-chart
         id="salesType"
-        header="销量对比"
+        header="2020年销量月对比"
         v-bind:initData="salesData"
         v-bind:width="700"
         v-bind:height="500"
@@ -45,7 +45,7 @@
     <view class="chart-container">
       <column-chart
         id="yearSalesType"
-        header="销量年同比对比"
+        header="2020年1-6月销量同比对比"
         v-bind:initData="yearSalesData"
         v-bind:width="700"
         v-bind:height="500"
@@ -55,7 +55,7 @@
     <view class="chart-container">
       <donut-chart
         id="incomeType"
-        header="收入类型占比"
+        header="2020年6月收入类型占比"
         v-bind:initData="incomeType"
         v-bind:width="700"
         v-bind:height="500"
@@ -65,7 +65,7 @@
     <view class="chart-container">
       <rose-chart
         id="roseType"
-        header="用户职业占比"
+        header="2020年6月用户职业占比"
         v-bind:initData="customJobData"
         v-bind:width="700"
         v-bind:height="500"
@@ -75,7 +75,7 @@
     <view class="chart-container">
       <funnel-chart
         id="funnelType"
-        header="用户丢失率分析"
+        header="2020年6月用户丢失率分析"
         v-bind:initData="lostData"
         v-bind:width="700"
         v-bind:height="500"
@@ -85,7 +85,7 @@
     <view class="chart-container">
       <radar-chart
         id="radarType"
-        header="用户类型分析"
+        header="2020年(4-6月)用户类型分析"
         v-bind:initData="customTypeData"
         v-bind:width="700"
         v-bind:height="500"

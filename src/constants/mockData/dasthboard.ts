@@ -2,7 +2,7 @@ export const monthlyIncomeData = {
   categories: ["1月", "2月", "3月", "4月", "5月", "6月"],
   series: [
     {
-      name: "收入",
+      name: "2020年",
       data: [59, 53, 50, 45, 60, 55],
     },
   ],
