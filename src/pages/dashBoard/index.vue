@@ -22,6 +22,37 @@
       ></line-chart>
     </view>
     <view class="chart-container">
+      <line-chart
+        id="yearlyIncome"
+        header="年同比对比"
+        v-bind:initData="yearlyIncomeData"
+        v-bind:width="700"
+        v-bind:height="500"
+        v-bind:yAxis="yAxis"
+        v-bind:options="lineOptions"
+      ></line-chart>
+    </view>
+    <view class="chart-container">
+      <column-chart
+        id="salesType"
+        header="销量对比"
+        v-bind:initData="salesData"
+        v-bind:width="700"
+        v-bind:height="500"
+        v-bind:options="columnOptions"
+      ></column-chart>
+    </view>
+    <view class="chart-container">
+      <column-chart
+        id="yearSalesType"
+        header="销量年同比对比"
+        v-bind:initData="yearSalesData"
+        v-bind:width="700"
+        v-bind:height="500"
+        v-bind:options="yearColumnOptions"
+      ></column-chart>
+    </view>
+    <view class="chart-container">
       <donut-chart
         id="incomeType"
         header="收入类型占比"
@@ -30,6 +61,16 @@
         v-bind:height="500"
         v-bind:options="pieOptions"
       ></donut-chart>
+    </view>
+    <view class="chart-container">
+      <rose-chart
+        id="roseType"
+        header="用户职业占比"
+        v-bind:initData="customJobData"
+        v-bind:width="700"
+        v-bind:height="500"
+        v-bind:options="roseOptions"
+      ></rose-chart>
     </view>
     <view class="chart-container">
       <funnel-chart
@@ -59,84 +100,18 @@ import lineChart from "@/components/lineChart/index.vue";
 import pieChart from "@/components/pieChart/index.vue";
 import funnelChart from "@/components/funnelChart/index.vue";
 import radarChart from "@/components/radarChart/index.vue";
-
-const monthlyIncomeData = {
-  categories: ["1月", "2月", "3月", "4月", "5月", "6月"],
-  series: [
-    {
-      name: "收入",
-      data: [59, 53, 50, 45, 60, 55]
-    }
-  ]
-};
-
-const incomeType = {
-  series: [
-    {
-      name: "机票",
-      data: 42
-    },
-    {
-      name: "餐饮",
-      data: 20
-    },
-    {
-      name: "座位",
-      data: 25
-    },
-    {
-      name: "娱乐",
-      data: 10
-    },
-    {
-      name: "其他",
-      data: 3
-    }
-  ]
-};
-
-const customDropData = {
-  series: [
-    {
-      name: "首页",
-      data: 100
-    },
-    {
-      name: "购票",
-      data: 89
-    },
-    {
-      name: "选择座位",
-      data: 67
-    },
-    {
-      name: "选择食物",
-      data: 50
-    },
-    {
-      name: "支付",
-      data: 45
-    }
-  ]
-};
-
-const customType = {
-  categories: ["男", "女", "儿童", "青年", "中年", "老年"],
-  series: [
-    {
-      name: "4月",
-      data: [49, 51, 10, 35, 38, 17]
-    },
-    {
-      name: "5月",
-      data: [52, 48, 16, 38, 35, 11]
-    },
-    {
-      name: "6月",
-      data: [40, 60, 12, 30, 43, 15]
-    }
-  ]
-};
+import roseChart from "@/components/roseChart/index.vue";
+import columnChart from "@/components/columChart/index.vue";
+import {
+  monthlyIncomeData,
+  incomeType,
+  customDropData,
+  customType,
+  yearlyIncomeData,
+  customJob,
+  salesData,
+  yearSalesData
+} from "@/constants/mockData/dasthboard";
 
 export default Vue.extend({
   data() {
@@ -145,6 +120,10 @@ export default Vue.extend({
       incomeType: {},
       lostData: {},
       customTypeData: {},
+      yearlyIncomeData: {},
+      customJobData: {},
+      yearSalesData: {},
+      salesData: {},
       lineOptions: {
         enableMarkLine: false
       },
@@ -182,6 +161,20 @@ export default Vue.extend({
           radar: { opacity: 0.4 }
         }
       },
+      roseOptions: {
+        legend: {
+          fontColor: "#59595f"
+        }
+      },
+      columnOptions: {
+        legend: {
+          fontColor: "#59595f"
+        },
+        yAxis: {
+          max: 8000,
+          min: 5000
+        }
+      },
       yAxis: {
         max: 70,
         min: 35,
@@ -194,12 +187,22 @@ export default Vue.extend({
     this.incomeType = incomeType;
     this.lostData = customDropData;
     this.customTypeData = customType;
+    this.yearlyIncomeData = yearlyIncomeData;
+    this.customJobData = customJob;
+    this.salesData = salesData;
+    this.yearSalesData = yearSalesData;
+    this.yearColumnOptions = {
+      ...this.columnOptions,
+      dataLabel: false
+    };
   },
   components: {
     "line-chart": lineChart,
     "donut-chart": pieChart,
     "funnel-chart": funnelChart,
-    "radar-chart": radarChart
+    "radar-chart": radarChart,
+    "rose-chart": roseChart,
+    "column-chart": columnChart
   }
 });
 </script>

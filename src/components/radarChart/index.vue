@@ -15,8 +15,6 @@
 
 <script>
 import uCharts from "@/uCharts/u-charts.js";
-var _self;
-var canvaRadar = null;
 
 export default {
   data() {
@@ -36,42 +34,40 @@ export default {
     options: Object || undefined
   },
   mounted() {
-    _self = this;
-
-    const { initData, width, height, id } = _self.$props;
+    const { initData, width, height, id } = this.$props;
 
     this.style = {
-      width: `${(width - 40) * _self.pixelRatio}upx`,
-      height: `${height * _self.pixelRatio}upx`
+      width: `${(width - 40) * this.pixelRatio}upx`,
+      height: `${height * this.pixelRatio}upx`
     };
     this.cWidth = uni.upx2px(width - 40);
     this.cHeight = uni.upx2px(height);
 
     if (initData) {
-      _self.showRadar(id, initData);
+      this.showRadar(id, initData);
     }
   },
   methods: {
     showRadar(canvasId, chartData) {
-      canvaRadar = new uCharts({
-        $this: _self,
+      this.canvaRadar = new uCharts({
+        $this: this,
         canvasId: canvasId,
         type: "radar",
         fontSize: 11,
         legend: { show: true },
         background: "#FFFFFF",
-        pixelRatio: _self.pixelRatio,
+        pixelRatio: this.pixelRatio,
         animation: true,
         dataLabel: true,
         categories: chartData.categories,
         series: chartData.series,
-        width: _self.cWidth * _self.pixelRatio,
-        height: _self.cHeight * _self.pixelRatio,
-        ..._self.$props.options
+        width: this.cWidth * this.pixelRatio,
+        height: this.cHeight * this.pixelRatio,
+        ...this.$props.options
       });
     },
     touchRadar(e) {
-      canvaRadar.showToolTip(e, {
+      this.canvaRadar.showToolTip(e, {
         format: item => {
           return `${item.name}: ${item.data}%`;
         }

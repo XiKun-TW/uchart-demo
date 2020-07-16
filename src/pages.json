@@ -3,7 +3,7 @@
     {
       "path": "pages/dashBoard/index",
       "style": {
-        "navigationBarTitleText": "xx 航空季报",
+        "navigationBarTitleText": "数字可视化",
         "navigationBarTextStyle": "white",
         "navigationBarBackgroundColor": "#23243b"
       }
@@ -15,6 +15,22 @@
       }
     }
   ],
+  // "tabBar": {
+  //   "color": "#7A7E83",
+  //   "selectedColor": "#3cc51f",
+  //   "borderStyle": "black",
+  //   "backgroundColor": "#23243b",
+  //   "list": [
+  //     {
+  //       "pagePath": "pages/dashBoard/index",
+  //       "text": "Demo"
+  //     },
+  //     {
+  //       "pagePath": "pages/index/index",
+  //       "text": "组件"
+  //     }
+  //   ]
+  // },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Dash board",

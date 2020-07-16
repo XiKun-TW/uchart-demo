@@ -16,9 +16,6 @@
 <script>
 import uCharts from "@/uCharts/u-charts.js";
 
-var _self;
-var canvaLineA = null;
-
 const defaultyAxis = {
   gridType: "grid",
   gridColor: "#CCCCCC",
@@ -43,17 +40,16 @@ export default {
     };
   },
   mounted() {
-    _self = this;
-    const { initData, width, height, id } = _self.$props;
+    const { initData, width, height, id } = this.$props;
     this.cWidth = uni.upx2px(width - 40);
     this.cHeight = uni.upx2px(height);
     this.style = {
-      width: `${(width - 40) * _self.pixelRatio}upx`,
-      height: `${height * _self.pixelRatio}upx`
+      width: `${(width - 40) * this.pixelRatio}upx`,
+      height: `${height * this.pixelRatio}upx`
     };
 
     if (initData) {
-      _self.showLineA(id, initData);
+      this.showLineA(id, initData);
     }
   },
   props: {
@@ -68,38 +64,38 @@ export default {
   },
   methods: {
     showLineA(canvasId, chartData) {
-      canvaLineA = new uCharts({
-        $this: _self,
+      this.canvaLineA = new uCharts({
+        $this: this,
         canvasId: canvasId,
         type: "line",
         fontSize: 12,
         legend: { show: true, fontColor: "#59595f" },
         dataLabel: false,
         dataPointShape: true,
-        pixelRatio: _self.pixelRatio,
+        pixelRatio: this.pixelRatio,
         categories: chartData.categories,
         series: chartData.series,
         animation: true,
         xAxis: {
           ...defaultxAxis,
-          ..._self.$props.xAxis
+          ...this.$props.xAxis
         },
         yAxis: {
           ...defaultyAxis,
-          ..._self.$props.yAxis
+          ...this.$props.yAxis
         },
-        width: _self.cWidth * _self.pixelRatio,
-        height: _self.cHeight * _self.pixelRatio,
+        width: this.cWidth * this.pixelRatio,
+        height: this.cHeight * this.pixelRatio,
         extra: {
           line: {
             type: "curve"
           }
         },
-        ..._self.$props.options
+        ...this.$props.options
       });
     },
     touchLineA(e) {
-      canvaLineA.showToolTip(e, {
+      this.canvaLineA.showToolTip(e, {
         format: function(item, category) {
           return category + " " + item.name + ":" + item.data;
         }

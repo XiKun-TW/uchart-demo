@@ -1,13 +1,13 @@
 <template>
   <view>
-    <view v-if="header" class="chart-header">{{header}}</view>
+    <view v-if="header" class="chart-header">{{ header }}</view>
     <view class="chart-canvas">
       <canvas
         v-bind:canvas-id="id"
         v-bind:id="id"
         v-bind:style="style"
         class="charts"
-        @touchstart="touchColumn"
+        @touchstart="touchPie"
       ></canvas>
     </view>
   </view>
@@ -22,8 +22,7 @@ export default {
       cWidth: "",
       cHeight: "",
       pixelRatio: 1,
-      style: {},
-      canvas: null
+      style: {}
     };
   },
   props: {
@@ -31,9 +30,8 @@ export default {
     width: Number,
     height: Number,
     header: String,
-    rotate: false,
     id: String,
-    options: Object
+    options: Object || undefined
   },
   mounted() {
     const { initData, width, height, id } = this.$props;
@@ -46,57 +44,46 @@ export default {
     this.cHeight = uni.upx2px(height);
 
     if (initData) {
-      this.showColumn(id, initData);
+      this.showPie(id, initData);
     }
   },
   methods: {
-    showColumn(canvasId, chartData) {
-      const { rotate } = this.$props;
-      this.canvas = new uCharts({
+    showPie(canvasId, chartData) {
+      this.canvaPie = new uCharts({
         $this: this,
         canvasId: canvasId,
-        type: "column",
-        legend: { show: true },
+        type: "rose",
         fontSize: 11,
+        legend: { show: true },
         background: "#FFFFFF",
         pixelRatio: this.pixelRatio,
-        animation: true,
-        rotate: !!rotate,
-        categories: chartData.categories,
         series: chartData.series,
-        xAxis: {
-          disableGrid: true
-        },
-        yAxis: {
-          //disabled:true
-        },
-        dataLabel: true,
+        animation: true,
         width: this.cWidth * this.pixelRatio,
         height: this.cHeight * this.pixelRatio,
+        dataLabel: true,
         extra: {
-          column: {
-            type: "group",
-            width:
-              (this.cWidth * this.pixelRatio * 0.45) /
-              chartData.categories.length
+          rose: {
+            type: "area",
+            minRadius: 50,
+            activeOpacity: 0.5,
+            offsetAngle: 0,
+            labelWidth: 15
           }
         },
         ...this.$props.options
       });
     },
-    touchColumn(e) {
-      this.canvas.showToolTip(e, {
-        format: function(item, category) {
-          if (typeof item.data === "object") {
-            return category + " " + item.name + ":" + item.data.value;
-          } else {
-            return category + " " + item.name + ":" + item.data;
-          }
+    touchPie(e) {
+      this.canvaPie.showToolTip(e, {
+        format: function(item) {
+          return item.name + ":" + item.data;
         }
       });
     }
   }
 };
 </script>
+
 <style>
 </style>
